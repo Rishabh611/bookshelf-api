@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookshelf-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bookshelf-api
+  template:
+    metadata:
+      labels:
+        app: bookshelf-api
+    spec:
+      containers:
+        - name: bookshelf-api
+          image: rishabh611/bookshelf-api:1.0
+          ports:
+            - containerPort: 8080

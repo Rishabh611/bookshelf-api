@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "rishabh611/bookshelf-api"
-        IMAGE_TAG = "latest"
+        IMAGE_TAG = "1.0"
     }
 
     stages {

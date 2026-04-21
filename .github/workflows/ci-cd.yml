@@ -34,10 +34,14 @@ jobs:
       - name: deploy to kubernetes
         uses: azure/setup-kubectl@v3
 
+      - name: configure kubeconfig
+        run: |
+          mkdir -p $HOME/.kube
+          echo "${{ secrets.KUBECONFIG_DATA }}" > $HOME/.kube/config
+          chmod 600 $HOME/.kube/config
+
       - name: deploy to kubernetes
         run: kubectl apply -f k8s/deployment.yaml && kubectl apply -f k8s/service.yaml
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG_DATA }}
 
       - name: notify success
         if: success()
